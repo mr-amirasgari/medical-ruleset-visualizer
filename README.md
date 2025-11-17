@@ -40,7 +40,7 @@
 
 ## 👨‍💻 ساخته شده توسط
 
-**امیرمحمد اسگری**  
+**امیرمحمد عسگری**  
 Python Developer | Medical Data Analyst  
 [GitHub](https://github.com/mr-amirasgari) • [LinkedIn](https://www.linkedin.com/in/amirmohammadasgari)
 
