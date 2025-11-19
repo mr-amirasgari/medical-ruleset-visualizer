@@ -16,7 +16,7 @@
       color: #333;
       padding: 30px;
       direction: rtl;
-      position: relative; /* برای موقعیت‌دهی دکمه */
+      position: relative;
     }
 
     .container {
@@ -127,29 +127,33 @@
       border-top: 1px solid #eee;
     }
 
-    /* دکمه دو زبانه — همیشه در بالا-چپ */
+    /* 🟢 دکمه دو زبانه — کوچیک، ظریف، مدرن */
     .lang-switch {
       position: fixed;
       top: 20px;
       left: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #00796b;
-      border: 1px solid #00acc1;
-      padding: 8px 14px;
-      border-radius: 12px;
+      width: 24px;
+      height: 24px;
+      background: #f0f0f0;
+      color: #555;
+      border: 1px solid #e0e0e0;
+      border-radius: 50%;
+      font-size: 10px;
       font-weight: 600;
-      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
     }
 
     .lang-switch:hover {
-      background: #00acc1;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 172, 193, 0.3);
+      background: #e0f7fa;
+      color: #00796b;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 121, 107, 0.15);
     }
 
     /* تنظیمات جهت و ترازبندی برای انگلیسی */
@@ -170,7 +174,7 @@
 </head>
 <body>
 
-  <!-- دکمه دو زبانه — همیشه قابل مشاهده و کاربردی -->
+  <!-- دکمه دو زبانه — کوچیک و ظریف مثل اپ‌های مدرن -->
   <button class="lang-switch" onclick="switchLanguage()">EN/FA</button>
 
   <div class="container">
