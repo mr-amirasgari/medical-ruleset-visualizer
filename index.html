@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>پیش‌بینی سرطان پستان — پورتفولیوی امیرمحمد عسگری</title>
+  <title>Predict Breast Cancer — Amir Mohammad Asgari Portfolio</title>
   <style>
     * {
       margin: 0;
@@ -125,56 +125,177 @@
       background-color: #fafafa;
       border-top: 1px solid #eee;
     }
+    
+    /* English content styles */
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .content.en {
+      direction: ltr;
+      text-align: left;
+    }
+    
+    .form-group.en {
+      text-align: left;
+    }
+    
+    .footer.en {
+      direction: ltr;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
 
+  <button class="lang-switch" onclick="switchLanguage()">EN/FA</button>
+
   <div class="container">
     <div class="header">
-      <h1>سیستم تحلیل داده پزشکی</h1>
-      <p>پیش‌بینی خوش‌خیم یا بدخیم بودن تومور</p>
+      <h1 id="header-title">Medical Data Analysis System</h1>
+      <p id="header-subtitle">Predicting Benign or Malignant Tumor</p>
     </div>
 
-    <div class="content">
+    <div class="content" id="content">
       <div class="form-group">
-        <label for="worst_concave_points">حداکثر نقاط مقعر (concave points)</label>
-        <input type="number" id="worst_concave_points" step="0.001" placeholder="مثلاً 0.14">
+        <label for="worst_concave_points" id="label-worst-concave">Maximum Concave Points</label>
+        <input type="number" id="worst_concave_points" step="0.001" placeholder="e.g., 0.14">
       </div>
 
       <div class="form-group">
-        <label for="worst_area">بیشترین مساحت (area)</label>
-        <input type="number" id="worst_area" step="1" placeholder="مثلاً 800">
+        <label for="worst_area" id="label-worst-area">Maximum Area</label>
+        <input type="number" id="worst_area" step="1" placeholder="e.g., 800">
       </div>
 
       <div class="form-group">
-        <label for="mean_texture">میانگین بافت (texture)</label>
-        <input type="number" id="mean_texture" step="0.1" placeholder="مثلاً 18.5">
+        <label for="mean_texture" id="label-mean-texture">Mean Texture</label>
+        <input type="number" id="mean_texture" step="0.1" placeholder="e.g., 18.5">
       </div>
 
-      <button onclick="predict()">تحلیل داده</button>
+      <button onclick="predict()" id="predict-btn">Analyze Data</button>
 
       <div id="result" class="result"></div>
     </div>
 
-    <div class="footer">
-      طراحی شده با Python و Django — امیرمحمد عسگری
+    <div class="footer" id="footer">
+      Designed with Python and Django — Amir Mohammad Asgari
     </div>
   </div>
 
   <script>
+    let currentLang = 'fa';
+
+    function switchLanguage() {
+      const elements = {
+        'header-title': {
+          fa: 'سیستم تحلیل داده پزشکی',
+          en: 'Medical Data Analysis System'
+        },
+        'header-subtitle': {
+          fa: 'پیش‌بینی خوش‌خیم یا بدخیم بودن تومور',
+          en: 'Predicting Benign or Malignant Tumor'
+        },
+        'label-worst-concave': {
+          fa: 'حداکثر نقاط مقعر (concave points)',
+          en: 'Maximum Concave Points'
+        },
+        'label-worst-area': {
+          fa: 'بیشترین مساحت (area)',
+          en: 'Maximum Area'
+        },
+        'label-mean-texture': {
+          fa: 'میانگین بافت (texture)',
+          en: 'Mean Texture'
+        },
+        'predict-btn': {
+          fa: 'تحلیل داده',
+          en: 'Analyze Data'
+        },
+        'footer': {
+          fa: 'طراحی شده با Python و Django — امیرمحمد عسگری',
+          en: 'Designed with Python and Django — Amir Mohammad Asgari'
+        },
+        'alert': {
+          fa: 'لطفاً همه مقادیر را به درستی وارد کنید.',
+          en: 'Please enter all values correctly.'
+        },
+        'benign-result': {
+          fa: 'نتیجه: تومور خوش‌خیم (1)',
+          en: 'Result: Benign Tumor (1)'
+        },
+        'malignant-result': {
+          fa: 'نتیجه: تومور بدخیم (0)',
+          en: 'Result: Malignant Tumor (0)'
+        }
+      };
+
+      currentLang = currentLang === 'fa' ? 'en' : 'fa';
+
+      // Update all text elements
+      for (const [id, translations] of Object.entries(elements)) {
+        if (id !== 'alert' && id !== 'benign-result' && id !== 'malignant-result') {
+          const element = document.getElementById(id);
+          if (element) {
+            element.textContent = translations[currentLang];
+          }
+        }
+      }
+
+      // Update placeholder attributes
+      document.getElementById('worst_concave_points').placeholder = currentLang === 'fa' ? 'مثلاً 0.14' : 'e.g., 0.14';
+      document.getElementById('worst_area').placeholder = currentLang === 'fa' ? 'مثلاً 800' : 'e.g., 800';
+      document.getElementById('mean_texture').placeholder = currentLang === 'fa' ? 'مثلاً 18.5' : 'e.g., 18.5';
+
+      // Update content direction and text alignment
+      const content = document.getElementById('content');
+      if (currentLang === 'en') {
+        content.classList.add('en');
+        content.classList.remove('fa');
+      } else {
+        content.classList.add('fa');
+        content.classList.remove('en');
+      }
+
+      // Update footer direction and alignment
+      const footer = document.getElementById('footer');
+      if (currentLang === 'en') {
+        footer.classList.add('en');
+        footer.classList.remove('fa');
+      } else {
+        footer.classList.add('fa');
+        footer.classList.remove('en');
+      }
+    }
+
     function predict() {
       const worst_concave_points = parseFloat(document.getElementById('worst_concave_points').value);
       const worst_area = parseFloat(document.getElementById('worst_area').value);
       const mean_texture = parseFloat(document.getElementById('mean_texture').value);
 
       if (isNaN(worst_concave_points) || isNaN(worst_area) || isNaN(mean_texture)) {
-        alert("لطفاً همه مقادیر را به درستی وارد کنید.");
+        const alertText = currentLang === 'fa' ? 
+          'لطفاً همه مقادیر را به درستی وارد کنید.' : 
+          'Please enter all values correctly.';
+        alert(alertText);
         return;
       }
 
-      let prediction = 1; // پیش‌فرض: خوش‌خیم
+      let prediction = 1; // Default: benign
 
-      // قوانین Ruleset 6 — دقیق و ساده
+      // Ruleset 6 — precise and simple
       if (
         (mean_texture > 21.25 && worst_concave_points > 0.133) ||
         worst_concave_points > 0.171 ||
@@ -188,10 +309,14 @@
 
       if (prediction === 1) {
         resultDiv.className = 'result benign';
-        resultDiv.textContent = 'نتیجه: تومور خوش‌خیم (1)';
+        resultDiv.textContent = currentLang === 'fa' ? 
+          'نتیجه: تومور خوش‌خیم (1)' : 
+          'Result: Benign Tumor (1)';
       } else {
         resultDiv.className = 'result malignant';
-        resultDiv.textContent = 'نتیجه: تومور بدخیم (0)';
+        resultDiv.textContent = currentLang === 'fa' ? 
+          'نتیجه: تومور بدخیم (0)' : 
+          'Result: Malignant Tumor (0)';
       }
     }
   </script>
