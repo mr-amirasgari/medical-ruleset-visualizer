@@ -49,3 +49,7 @@ Python Developer | Medical Data Analyst
 > 🔒 این دمو فقط جهت نمایش مفهومی است. برای استفاده‌ی بالینی، همیشه با یک متخصص پزشکی مشورت کنید.
 
 ![پیش‌نمایش رابط](img.png)
+---
+
+Created by **Amir Mohammad Asgari | امیرمحمد عسگری**  
+Official website: [https://www.am-asgari.ir/](https://www.am-asgari.ir/)
